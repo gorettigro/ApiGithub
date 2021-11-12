@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+// Views
+import Home from "./Pages/Home/Home"
+import Repos from "./Pages/Repos/Repos"
+import Followers from "./Pages/Followers/Followers"
+import MainLayout from './Components/Custom/MainLayout/MainLayout';
+
 function App() {
+
+  //JSX
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <MainLayout>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+
+          <Route path="/followers/:user" exact>
+            <Followers/>
+          </Route>
+
+          <Route path="/repos/:user" exact>
+            <Repos />
+          </Route>
+        </MainLayout>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+//Props, state, hooks
